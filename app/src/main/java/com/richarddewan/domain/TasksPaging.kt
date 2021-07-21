@@ -1,6 +1,8 @@
 package com.richarddewan.domain
 
 import com.google.gson.annotations.SerializedName
+import com.richarddewan.paging3_todo.data.remote.response.DataItem
+import com.richarddewan.paging3_todo.data.remote.response.TaskResponse
 
 data class TasksPaging(
     val currentPage:Int = 0,
@@ -26,4 +28,23 @@ data class Task(
 
     val status: String? = null
 )
+
+
+ fun List<DataItem?>?.toTasks(): List<Task>?
+ {
+     return this?.map {
+
+       Task(note = it?.note,updatedAt = it?.updatedAt,userId = it?.userId,createdAt = it?.createdAt
+       ,id = it?.id,title = it?.title,body = it?.body,status = it?.status)
+     }
+ }
+
+fun TaskResponseToTaskPaging(taskResponse: TaskResponse): TasksPaging?
+{
+    return taskResponse.data.toTasks()?.let {
+        TasksPaging(currentPage = taskResponse.currentPage!!,totalPages = taskResponse.lastPage!!,
+            tasks = it
+        )
+    }
+}
 
