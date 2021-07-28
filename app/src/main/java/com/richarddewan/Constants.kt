@@ -2,6 +2,6 @@ package com.richarddewan
 
 object Constants {
 
-    const val Base_Url = "https://freeapi.rdewan.dev/api/no_auth"
+    const val Base_Url = "https://freeapi.rdewan.dev/api/no_auth/"
     const val HEADER_ACCEPT = "Accept: application/json"
 }

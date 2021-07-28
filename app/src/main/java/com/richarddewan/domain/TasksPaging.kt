@@ -42,7 +42,7 @@ data class Task(
 fun TaskResponseToTaskPaging(taskResponse: TaskResponse): TasksPaging?
 {
     return taskResponse.data.toTasks()?.let {
-        TasksPaging(currentPage = taskResponse.currentPage!!,totalPages = taskResponse.lastPage!!,
+        TasksPaging(currentPage = taskResponse.currentPage!!,totalPages = taskResponse.total!!,
             tasks = it
         )
     }

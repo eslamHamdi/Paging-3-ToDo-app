@@ -10,10 +10,10 @@ import retrofit2.http.Query
 interface ToDoService {
 
     @Headers(Constants.HEADER_ACCEPT)
-    @GET("/all_task")
+    @GET("all_task")
     suspend fun getTaskList(@Query("page") pageNum:Int):TaskResponse
 
     @Headers(Constants.HEADER_ACCEPT)
-    @GET("/all_task")
+    @GET("all_task")
      fun getTaskListRx(@Query("page") pageNum:Int):Single<TaskResponse>
 }

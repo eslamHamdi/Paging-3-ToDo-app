@@ -9,9 +9,7 @@ import com.richarddewan.paging3_todo.databinding.FragmentFlowPagingSourceBinding
 import com.richarddewan.paging3_todo.databinding.FragmentFlowRemoteMediatorBinding
 
 
-/*
-created by Richard Dewan 11/04/2021
-*/
+
 
 class FlowRemoteMediatorFragment: Fragment() {
     private lateinit var binding: FragmentFlowRemoteMediatorBinding
