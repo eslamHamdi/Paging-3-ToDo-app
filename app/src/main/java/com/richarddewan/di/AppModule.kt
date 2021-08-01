@@ -6,6 +6,8 @@ import com.richarddewan.paging3_todo.data.remote.ToDoService
 import com.richarddewan.paging3_todo.ui.flow.viewmodel.FlowViewModel
 import com.richarddewan.repository.flow.TaskFlowRepository
 import com.richarddewan.repository.paging.TaskFlowPagingSource
+import com.richarddewan.repository.paging.TaskRxPagingSource
+import com.richarddewan.repository.rx.TaskRxRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +40,20 @@ object AppModule {
     fun getFlowRepository(source: TaskFlowPagingSource):TaskFlowRepository
     {
         return TaskFlowRepository(source)
+    }
+
+    @Provides
+    @Singleton
+    fun getRxPagingSource(service:ToDoService): TaskRxPagingSource
+    {
+        return TaskRxPagingSource(service)
+    }
+
+    @Provides
+    @Singleton
+    fun getRxRepository(source: TaskRxPagingSource): TaskRxRepository
+    {
+        return TaskRxRepository(source)
     }
 
 }

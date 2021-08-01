@@ -6,17 +6,17 @@
     <fragment
         android:id="@+id/nav_flow"
         android:name="com.richarddewan.paging3_todo.ui.flow.FlowPagingSourceFragment"
-        android:label="FlowPagingSource" />
+        android:label="FlowPagingSourceFragment" />
     <fragment
         android:id="@+id/nav_rxjava"
         android:name="com.richarddewan.paging3_todo.ui.flow.FlowRemoteMediatorFragment"
-        android:label="FlowRemoteMediatorFragment" />
-    <fragment
-        android:id="@+id/nav_flow_rm"
-        android:name="com.richarddewan.paging3_todo.ui.RxPagingSourceFragment"
         android:label="RxPagingSourceFragment" />
     <fragment
+        android:id="@+id/nav_flow_rm"
+        android:name="com.richarddewan.paging3_todo.ui.rx.RxPagingSourceFragment"
+        android:label="FlowRemoteMediatorFragment" />
+    <fragment
         android:id="@+id/nav_rxjava_rm"
-        android:name="com.richarddewan.paging3_todo.ui.RxRemoteMediatorFragment"
+        android:name="com.richarddewan.paging3_todo.ui.rx.RxRemoteMediatorFragment"
         android:label="RxRemoteMediatorFragment" />
 </navigation>

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
          */
         val appBarConfig = AppBarConfiguration(
             setOf(
-                R.id.nav_flow,R.id.nav_flow_rm,R.id.nav_rxjava, R.id.nav_rxjava_rm
+                R.id.nav_flow,R.id.nav_rxjava,R.id.nav_flow_rm, R.id.nav_rxjava_rm
             )
         )
         /*
