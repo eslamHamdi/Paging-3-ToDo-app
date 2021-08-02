@@ -1,6 +1,10 @@
 package com.richarddewan.di
 
 import android.content.Context
+import androidx.room.Room
+import com.richarddewan.paging3_todo.data.local.database.DataBaseService
+import com.richarddewan.paging3_todo.data.local.database.TaskFlowDao
+import com.richarddewan.paging3_todo.data.local.database.TaskRxDao
 import com.richarddewan.paging3_todo.data.remote.ServiceClient
 import com.richarddewan.paging3_todo.data.remote.ToDoService
 import com.richarddewan.paging3_todo.ui.flow.viewmodel.FlowViewModel
@@ -56,4 +60,24 @@ object AppModule {
         return TaskRxRepository(source)
     }
 
+    @Provides
+    @Singleton
+    fun provideDataBase(@ApplicationContext context:Context):DataBaseService
+    {
+       return Room.databaseBuilder(context,DataBaseService::class.java,"TasksDataBase").build()
+    }
+
+    @Provides
+    @Singleton
+    fun getFlowDao(@ApplicationContext context:Context):TaskFlowDao
+    {
+        return this.provideDataBase(context).getFlowDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getRxDao(@ApplicationContext context:Context): TaskRxDao
+    {
+        return this.provideDataBase(context).getRxDao()
+    }
 }

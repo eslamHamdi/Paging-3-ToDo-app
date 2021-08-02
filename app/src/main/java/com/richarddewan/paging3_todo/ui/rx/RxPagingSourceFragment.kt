@@ -39,8 +39,8 @@ class RxPagingSourceFragment: Fragment() {
 
         binding.rvRxPaging.adapter = pagingDataAdapter
         pagingDataAdapter.addLoadStateListener {
-            (it.source.refresh is LoadState.Loading).also {
-                binding.rxProgress.isVisible = it }
+            (it.source.refresh is LoadState.Loading).also {state->
+                binding.rxProgress.isVisible = state }
 
             //load State for error and show error msg
             val errorState = it.source.refresh as? LoadState.Error ?:
@@ -50,9 +50,9 @@ class RxPagingSourceFragment: Fragment() {
             it.append as? LoadState.Error ?:
             it.prepend as? LoadState.Error
 
-            errorState?.let {
+            errorState?.let { LoadStateError->
 
-                showErrorSnackBar(it.error.message.toString())
+                showErrorSnackBar(LoadStateError.error.localizedMessage ?: "Error")
             }
 
         }
@@ -77,6 +77,8 @@ class RxPagingSourceFragment: Fragment() {
 
     fun showErrorSnackBar(msg:String?)
     {
-        Snackbar.make(requireView(),msg!!, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(requireView(),msg!!, Snackbar.LENGTH_SHORT).apply {
+            setAction("close") { dismiss() }
+        }.show()
     }
 }

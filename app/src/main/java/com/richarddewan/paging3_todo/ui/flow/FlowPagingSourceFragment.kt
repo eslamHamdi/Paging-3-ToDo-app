@@ -46,8 +46,8 @@ class FlowPagingSourceFragment: Fragment() {
         binding.rvFlowPaging.adapter = pagingDataAdapter
 
         pagingDataAdapter.addLoadStateListener {
-            (it.source.refresh is LoadState.Loading).also {
-                binding.flowProgress.isVisible = it }
+            (it.source.refresh is LoadState.Loading).also { state->
+                binding.flowProgress.isVisible = state }
 
             //load State for error and show error msg
             val errorState = it.source.refresh as? LoadState.Error ?:
@@ -57,9 +57,9 @@ class FlowPagingSourceFragment: Fragment() {
             it.append as? LoadState.Error ?:
             it.prepend as? LoadState.Error
 
-            errorState?.let {
+            errorState?.let { loadError->
 
-                showErrorSnackBar(it.error.message.toString())
+                showErrorSnackBar(loadError.error.message.toString())
             }
 
         }
