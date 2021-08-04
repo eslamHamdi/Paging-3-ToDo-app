@@ -1,11 +1,11 @@
-package com.richarddewan.repository.rx
+package com.richarddewan.paging3_todo.repository.rx
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.RxPagingSource
 import androidx.paging.rxjava3.flowable
-import com.richarddewan.domain.Task
+import com.richarddewan.paging3_todo.domain.Task
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject

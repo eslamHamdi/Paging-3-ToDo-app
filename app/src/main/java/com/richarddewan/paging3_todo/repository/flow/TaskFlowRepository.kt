@@ -1,16 +1,16 @@
-package com.richarddewan.repository.flow
+package com.richarddewan.paging3_todo.repository.flow
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.richarddewan.domain.Task
-import com.richarddewan.repository.paging.TaskFlowPagingSource
+import com.richarddewan.paging3_todo.domain.Task
+import com.richarddewan.paging3_todo.repository.paging.TaskFlowPagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class TaskFlowRepository @Inject constructor(private val source:TaskFlowPagingSource) {
+class TaskFlowRepository @Inject constructor(private val source: TaskFlowPagingSource) {
 
     fun getTaskList():Flow<PagingData<Task>>
     {

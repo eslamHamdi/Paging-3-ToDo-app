@@ -1,12 +1,11 @@
 package com.richarddewan.paging3_todo.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.richarddewan.domain.Task
+import com.richarddewan.paging3_todo.domain.Task
 import com.richarddewan.paging3_todo.databinding.TaskListViewBinding
 
 class TaskPagingDataAdapter:PagingDataAdapter<Task,TaskPagingDataAdapter.TaskViewHolder
@@ -15,7 +14,7 @@ class TaskPagingDataAdapter:PagingDataAdapter<Task,TaskPagingDataAdapter.TaskVie
 
              class TaskViewHolder(val binding:TaskListViewBinding ):RecyclerView.ViewHolder(binding.root)
             {
-                fun onBind(task:Task)
+                fun onBind(task: Task)
                 {
                     binding.lbBody.text = task.body
                     binding.lbNote.text = task.note
