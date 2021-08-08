@@ -10,13 +10,24 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.richarddewan.paging3_todo"
+        applicationId "com.eslamhamdi.paging3_todo"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+
+            }
+        }
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -29,14 +40,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildscript {
+        ext.kotlin_version = '1.4.32'
+    }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
     buildFeatures {
         viewBinding true
     }
     kapt {
-        correctErrorTypes true
+       // correctErrorTypes true
+        mapDiagnosticLocations = true
     }
 }
 
@@ -58,10 +73,16 @@ dependencies {
 
 
     //https://developer.android.com/jetpack/androidx/releases/room
+    def room_version = "2.4.0-alpha04"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+
+
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
@@ -69,8 +90,11 @@ dependencies {
     //https://github.com/google/dagger
     //implementation "com.google.dagger:dagger:$dagger_version"
     //kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation 'com.google.dagger:hilt-android:2.38.1'
-    kapt 'com.google.dagger:hilt-compiler:2.38.1'
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    //implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+    //annotationProcessor 'com.google.dagger:hilt-compiler:2.38.1'
 
 
     //https://github.com/ReactiveX/RxJava
@@ -124,9 +148,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
 
     // Annotation processor
-    //kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+   //noinspection LifecycleAnnotationProcessorWithJava8
+   kapt  "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     // alternately - if using Java8, use the following instead of lifecycle-compiler
-    //implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
+  //implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
 
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")

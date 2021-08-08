@@ -2,11 +2,11 @@
 buildscript {
     ext {
         navigation_version = "2.3.5"
-        paging_version = "3.1.0-alpha01"
+        paging_version = "3.1.0-alpha03"
         rxjava_version = "3.0.11"
         rxandroid_version = "3.0.0"
         dagger_version = "2.33"
-        room_version = "2.4.0-alpha03"
+        room_version = "2.4.0-alpha04"
         timber_version = "4.7.1"
         retrofit_version = '2.9.0'
         okhttp_version = '4.9.0'

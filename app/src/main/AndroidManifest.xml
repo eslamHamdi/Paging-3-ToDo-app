@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.richarddewan.paging3_todo">
+    package="com.eslamhamdi.paging3_todo">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="com.richarddewan.MyApplication"
+        android:name="com.eslamhamdi.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Paging3ToDo">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.eslamhamdi.paging3_todo.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
