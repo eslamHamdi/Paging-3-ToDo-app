@@ -3,7 +3,7 @@
 ## Application Description
 
 it's a sample app utilizing the power of Paging library 3 (like caching data and handling errors) exposing the requested data(Retrofit,Room) through kotlin flow and rx java 3 integrating also
-dagger-hilt as dependency injection framework
+dagger-hilt as dependency injection framework(a free api endpoint used to get the dummy notes needed)
 
 
 ## How to Run
