@@ -2,9 +2,12 @@ package com.eslamhamdi.paging3_todo.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.eslamhamdi.paging3_todo.databinding.LoadStateFooterViewItemBinding
 import com.eslamhamdi.paging3_todo.domain.Task
 import com.eslamhamdi.paging3_todo.databinding.TaskListViewBinding
 
@@ -25,6 +28,41 @@ class TaskPagingDataAdapter:PagingDataAdapter<Task,TaskPagingDataAdapter.TaskVie
                 }
 
             }
+
+    inner class LoadStateViewHolder(val binding:LoadStateFooterViewItemBinding):RecyclerView.ViewHolder(binding.root)
+    {
+        fun bind(loadState: LoadState)
+        {
+            binding.retryButton.setOnClickListener {
+                retryListener?.onClick()
+            }
+
+            when(loadState)
+            {
+                is LoadState.Loading ->{
+                    binding.errorMsg.isVisible = false
+                    binding.progressBar.isVisible = true
+                    binding.retryButton.isVisible = false
+
+                }
+
+                is LoadState.NotLoading ->{
+                    binding.errorMsg.isVisible = false
+                    binding.progressBar.isVisible = false
+                    binding.retryButton.isVisible = false
+                }
+
+                is LoadState.Error ->{
+                    binding.errorMsg.isVisible = true
+                    binding.progressBar.isVisible = false
+                    binding.retryButton.isVisible = true
+                    binding.errorMsg.text = loadState.error.message
+                }
+            }
+
+
+        }
+    }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
        getItem(position)?.let {
@@ -55,5 +93,12 @@ class TaskPagingDataAdapter:PagingDataAdapter<Task,TaskPagingDataAdapter.TaskVie
             return oldItem == newItem
         }
 
+    }
+
+    var retryListener:RetryClickListener? =null
+
+    interface RetryClickListener
+    {
+        fun onClick()
     }
 }
