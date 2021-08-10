@@ -11,13 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import com.eslamhamdi.paging3_todo.databinding.FragmentRxPagingSourceBinding
+import com.eslamhamdi.paging3_todo.ui.adapter.TaskLoadStateAdabter
 import com.eslamhamdi.paging3_todo.ui.adapter.TaskPagingDataAdapter
 import com.eslamhamdi.paging3_todo.ui.rx.viewmodel.RxViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
-class RxPagingSourceFragment: Fragment() {
+class RxPagingSourceFragment: Fragment(),TaskLoadStateAdabter.RetryClickListener {
     private lateinit var binding: FragmentRxPagingSourceBinding
     val viewModel:RxViewModel by viewModels()
     lateinit var pagingDataAdapter: TaskPagingDataAdapter
@@ -37,7 +38,11 @@ class RxPagingSourceFragment: Fragment() {
 
         pagingDataAdapter = TaskPagingDataAdapter()
 
-        binding.rvRxPaging.adapter = pagingDataAdapter
+        binding.rvRxPaging.adapter = pagingDataAdapter.withLoadStateHeaderAndFooter(header = TaskLoadStateAdabter().also {
+            it.retryListener = this
+        } , footer = TaskLoadStateAdabter().also {
+            it.retryListener = this})
+
         pagingDataAdapter.addLoadStateListener {
             (it.source.refresh is LoadState.Loading).also {state->
                 binding.rxProgress.isVisible = state }
@@ -80,5 +85,9 @@ class RxPagingSourceFragment: Fragment() {
         Snackbar.make(requireView(),msg!!, Snackbar.LENGTH_SHORT).apply {
             setAction("close") { dismiss() }
         }.show()
+    }
+
+    override fun onClick() {
+        TODO("Not yet implemented")
     }
 }

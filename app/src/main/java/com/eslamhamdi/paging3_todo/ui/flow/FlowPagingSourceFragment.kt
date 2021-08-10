@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.eslamhamdi.paging3_todo.databinding.FragmentFlowPagingSourceBinding
 import com.eslamhamdi.paging3_todo.showErrorSnackBar
+import com.eslamhamdi.paging3_todo.ui.adapter.TaskLoadStateAdabter
 import com.eslamhamdi.paging3_todo.ui.adapter.TaskPagingDataAdapter
 import com.eslamhamdi.paging3_todo.ui.flow.viewmodel.FlowViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 
 @InternalCoroutinesApi
 @AndroidEntryPoint
-class FlowPagingSourceFragment: Fragment() {
+class FlowPagingSourceFragment: Fragment(),TaskLoadStateAdabter.RetryClickListener {
     private lateinit var binding: FragmentFlowPagingSourceBinding
     lateinit var pagingDataAdapter: TaskPagingDataAdapter
 
@@ -42,7 +43,13 @@ class FlowPagingSourceFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pagingDataAdapter = TaskPagingDataAdapter()
-        binding.rvFlowPaging.adapter = pagingDataAdapter
+
+
+        binding.rvFlowPaging.adapter = pagingDataAdapter.withLoadStateHeaderAndFooter(header = TaskLoadStateAdabter().also {
+            it.retryListener = this
+        } , footer = TaskLoadStateAdabter().also {
+            it.retryListener = this})
+
 
         pagingDataAdapter.addLoadStateListener {
             (it.source.refresh is LoadState.Loading).also { state->
@@ -85,6 +92,9 @@ class FlowPagingSourceFragment: Fragment() {
         }
     }
 
+    override fun onClick() {
+        TODO("Not yet implemented")
+    }
 
 
 }
