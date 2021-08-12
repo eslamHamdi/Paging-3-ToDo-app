@@ -15,14 +15,12 @@ data class TaskEntity (@ColumnInfo(name = "note") var note: String? = "",
 
                       @PrimaryKey
                       @ColumnInfo(name = "ID")
-                      var id: Long? = 0L,
+                      var id: Long?,
 
                        @ColumnInfo(name = "title") var title: String? = "",
 
                        @ColumnInfo(name = "body") var body: String? = "",
 
-                       @ColumnInfo(name = "status") var status: String? = "",
+                       @ColumnInfo(name = "status") var status: String? = ""
 
-                       @ColumnInfo(name = "prevKey") val prevKey:Int? = 0,
-
-                       @ColumnInfo(name = "nextKey")  val nextKey:Int? = 0)
+                       )

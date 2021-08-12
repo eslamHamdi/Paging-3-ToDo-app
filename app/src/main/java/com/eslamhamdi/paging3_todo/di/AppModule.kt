@@ -64,7 +64,7 @@ object AppModule {
     @Singleton
     fun provideDataBase(@ApplicationContext context:Context):DataBaseService
     {
-       return Room.databaseBuilder(context,DataBaseService::class.java,"TasksDataBase").build()
+       return Room.databaseBuilder(context,DataBaseService::class.java,"TasksDataBase").fallbackToDestructiveMigration().build()
     }
 
     @Provides

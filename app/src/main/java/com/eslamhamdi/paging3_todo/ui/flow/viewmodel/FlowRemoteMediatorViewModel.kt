@@ -23,7 +23,7 @@ class FlowRemoteMediatorViewModel
 
      fun getPagingTasks(): Flow<PagingData<Task>>
     {
-        val data = mutableListOf<Task>()
+
          return repository.getTasksList().map { pagingData->
             pagingData.map {
                 Task(note = it.note,updatedAt = it.updatedAt,userId = it.userId,createdAt = it.createdAt
@@ -31,7 +31,7 @@ class FlowRemoteMediatorViewModel
                 )
             }
 
-        }.cachedIn(viewModelScope)
+        }
 
     }
 

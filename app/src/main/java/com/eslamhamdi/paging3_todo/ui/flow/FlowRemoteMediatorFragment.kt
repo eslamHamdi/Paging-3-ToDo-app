@@ -94,6 +94,6 @@ class FlowRemoteMediatorFragment: Fragment() , TaskLoadStateAdabter.RetryClickLi
     }
 
     override fun onClick() {
-        TODO("Not yet implemented")
+       observers()
     }
 }

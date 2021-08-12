@@ -31,6 +31,6 @@ class FlowRemoteMediatorRepository @Inject constructor(private val source:TaskFl
     private fun defaultPageConfig(): PagingConfig
     {
         return PagingConfig(pageSize = 10,prefetchDistance = 10,
-            enablePlaceholders = true,initialLoadSize = 30,maxSize = 40)
+            enablePlaceholders = false,initialLoadSize = 30,maxSize = 40)
     }
 }

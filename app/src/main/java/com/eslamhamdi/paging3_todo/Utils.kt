@@ -26,14 +26,13 @@ fun TaskResponseToTaskPaging(taskResponse: TaskResponse): TasksPaging?
     }
 }
 
-fun List<DataItem?>?.toEntities(currentPage:Int?,lastPage:Int?): List<TaskEntity>?
+fun List<DataItem?>?.toEntities(): List<TaskEntity>?
 {
 
     return this?.map {
 
         TaskEntity(note = it?.note,updatedAt = it?.updatedAt,userId = it?.userId,createdAt = it?.createdAt
-            ,id = it?.id?.toLong(),title = it?.title,body = it?.body,status = it?.status,prevKey = if (currentPage == 1) null else currentPage!! -1,
-            nextKey = if (currentPage == lastPage) null else currentPage+1 )
+            ,id = it?.id?.toLong(),title = it?.title,body = it?.body,status = it?.status)
     }
 }
 
