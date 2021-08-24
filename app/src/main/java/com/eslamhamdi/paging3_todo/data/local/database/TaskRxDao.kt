@@ -10,9 +10,9 @@ interface TaskRxDao {
      fun insertTasks(list:List<TaskEntity>)
 
     @Query("Select * from Tasks where id =:taskId")
-     fun getTask(taskId:Long):TaskEntity
+     fun getTask(taskId:Int):TaskEntity
 
-    @Query("Select * From Tasks")
+    @Query("Select * From Tasks Order by ID")
     fun getTasks(): PagingSource<Int, TaskEntity>
 
     @Query("Delete From Tasks")

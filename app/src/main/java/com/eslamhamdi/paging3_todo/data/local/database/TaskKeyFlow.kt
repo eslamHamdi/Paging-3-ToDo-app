@@ -13,9 +13,9 @@ interface TaskKeyFlow {
     suspend fun insertKeys(keys:List<TaskKeyEntity>)
 
     @Query("SELECT * FROM Task_Key Where taskId = :id ")
-    suspend fun getKey(id:Long?):TaskKeyEntity
+    suspend fun getKey(id:Int?):TaskKeyEntity
 
-    @Query("SELECT * FROM Task_Key ")
+    @Query("SELECT * FROM Task_Key Order By taskId Desc ")
     suspend fun getKeys():List<TaskKeyEntity>
 
     @Query("DELETE FROM Task_Key")

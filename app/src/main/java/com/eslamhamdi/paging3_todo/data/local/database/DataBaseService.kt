@@ -2,6 +2,7 @@ package com.eslamhamdi.paging3_todo.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.eslamhamdi.paging3_todo.data.local.entity.TaskEntity
 import com.eslamhamdi.paging3_todo.data.local.entity.TaskKeyEntity
 

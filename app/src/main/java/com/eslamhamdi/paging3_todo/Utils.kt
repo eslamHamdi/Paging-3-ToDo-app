@@ -32,7 +32,7 @@ fun List<DataItem?>?.toEntities(): List<TaskEntity>?
     return this?.map {
 
         TaskEntity(note = it?.note,updatedAt = it?.updatedAt,userId = it?.userId,createdAt = it?.createdAt
-            ,id = it?.id?.toLong(),title = it?.title,body = it?.body,status = it?.status)
+            ,id = it?.id?.toInt(),title = it?.title,body = it?.body,status = it?.status)
     }
 }
 

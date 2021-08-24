@@ -13,7 +13,7 @@ interface TaskKeyRxDao {
     fun insertKeys(keys:List<TaskKeyEntity>)
 
     @Query("SELECT * FROM Task_Key Where taskId = :id ")
-    fun getKey(id:Long): TaskKeyEntity
+    fun getKey(id:Int): TaskKeyEntity
 
     @Query("DELETE FROM Task_Key")
      fun wipeKeys()

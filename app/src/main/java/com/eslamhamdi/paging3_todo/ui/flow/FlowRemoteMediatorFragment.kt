@@ -43,6 +43,7 @@ class FlowRemoteMediatorFragment: Fragment() , TaskLoadStateAdabter.RetryClickLi
         super.onViewCreated(view, savedInstanceState)
 
         pagingDataAdapter = TaskPagingDataAdapter()
+        binding.rvFlowRemotePaging.setHasFixedSize(true)
 
         binding.rvFlowRemotePaging.adapter = pagingDataAdapter.withLoadStateHeaderAndFooter(header = TaskLoadStateAdabter().also {
             it.retryListener = this

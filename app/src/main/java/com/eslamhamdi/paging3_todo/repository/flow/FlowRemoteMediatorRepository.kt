@@ -4,6 +4,7 @@ import androidx.paging.*
 import com.eslamhamdi.paging3_todo.data.local.database.DataBaseService
 import com.eslamhamdi.paging3_todo.data.local.database.TaskFlowDao
 import com.eslamhamdi.paging3_todo.data.local.entity.TaskEntity
+import com.eslamhamdi.paging3_todo.domain.Task
 import com.eslamhamdi.paging3_todo.repository.paging.TaskFlowRemoteMediator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -30,7 +31,7 @@ class FlowRemoteMediatorRepository @Inject constructor(private val source:TaskFl
 
     private fun defaultPageConfig(): PagingConfig
     {
-        return PagingConfig(pageSize = 10,prefetchDistance = 10,
-            enablePlaceholders = false,initialLoadSize = 30,maxSize = 40)
+        return PagingConfig(pageSize = 10,enablePlaceholders = true
+            )
     }
 }

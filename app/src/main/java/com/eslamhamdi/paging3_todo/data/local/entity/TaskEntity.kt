@@ -13,9 +13,9 @@ data class TaskEntity (@ColumnInfo(name = "note") var note: String? = "",
 
                        @ColumnInfo(name = "createdAt") var createdAt: String? = "",
 
-                      @PrimaryKey
+                      @PrimaryKey(autoGenerate = false)
                       @ColumnInfo(name = "ID")
-                      var id: Long?,
+                      var id: Int?,
 
                        @ColumnInfo(name = "title") var title: String? = "",
 

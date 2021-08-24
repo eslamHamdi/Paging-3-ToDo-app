@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import com.eslamhamdi.paging3_todo.databinding.FragmentRxPagingSourceBinding
+import com.eslamhamdi.paging3_todo.ui.adapter.SingleSourceDataAdapter
 import com.eslamhamdi.paging3_todo.ui.adapter.TaskLoadStateAdabter
 import com.eslamhamdi.paging3_todo.ui.adapter.TaskPagingDataAdapter
 import com.eslamhamdi.paging3_todo.ui.rx.viewmodel.RxViewModel
@@ -21,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class RxPagingSourceFragment: Fragment(),TaskLoadStateAdabter.RetryClickListener {
     private lateinit var binding: FragmentRxPagingSourceBinding
     val viewModel:RxViewModel by viewModels()
-    lateinit var pagingDataAdapter: TaskPagingDataAdapter
+    lateinit var pagingDataAdapter: SingleSourceDataAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +37,7 @@ class RxPagingSourceFragment: Fragment(),TaskLoadStateAdabter.RetryClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pagingDataAdapter = TaskPagingDataAdapter()
+        pagingDataAdapter = SingleSourceDataAdapter()
 
         binding.rvRxPaging.adapter = pagingDataAdapter.withLoadStateHeaderAndFooter(header = TaskLoadStateAdabter().also {
             it.retryListener = this
@@ -87,7 +88,8 @@ class RxPagingSourceFragment: Fragment(),TaskLoadStateAdabter.RetryClickListener
         }.show()
     }
 
+    @ExperimentalCoroutinesApi
     override fun onClick() {
-        TODO("Not yet implemented")
+        observer()
     }
 }

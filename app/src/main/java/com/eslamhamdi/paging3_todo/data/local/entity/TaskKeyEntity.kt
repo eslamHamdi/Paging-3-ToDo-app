@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 @Keep
 @Entity(tableName = "Task_Key")
 data class TaskKeyEntity(
-    @PrimaryKey
-    val taskId:Long,
+    @PrimaryKey(autoGenerate = false)
+    val taskId:Int,
     @ColumnInfo(name = "prevKey") val prevKey:Int? ,
 
 @ColumnInfo(name = "nextKey")  val nextKey:Int?
