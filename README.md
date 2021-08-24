@@ -29,4 +29,5 @@ install the app and use the bottom navigation to navigate between 4 screens each
 
 
 ## Improvement Points
+-impelement Remote Mediator + Rx at the 4th fragment
 -unit testing
